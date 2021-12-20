@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=MonteCarlo&display=swap");
+
+$green: #2E8B57;
+
+.header {
+  margin-bottom: 30px;
+}
+
+.header-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__logo {
+    margin: 15px 0;
+    font-family: 'MonteCarlo', cursive, sans-serif;
+    font-size: 4rem;
+
+    span {
+      color: $green;
+    }
+  }
+
+  &__score {
+    font-size: 1.5rem;
+  }
+}
+
+.category-list {
+  list-style: none;
+  background-color: $green;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  border-radius: 8px;
+
+  &__item {
+    padding: 10px 20px;
+    flex-grow: 1;
+    border-radius: 8px;
+    text-align: center;
+
+    &_active {
+      background-color: lighten($green, 10%);
+    }
+  }
+}
