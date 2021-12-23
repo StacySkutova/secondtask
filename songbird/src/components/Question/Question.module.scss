@@ -13,7 +13,7 @@ $bordersColor: #505050;
     align-items: center;
   }
 
-  &__image {
+  .image {
     width: 200px;
     height: 155px;
     margin-right: 20px;
@@ -26,14 +26,14 @@ $bordersColor: #505050;
     }
   }
 
-  &__details {
+  .details {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
   }
 
-  &__heading {
+  .heading {
     margin: 0 10px 10px;
     padding-bottom: 5px;
     border-bottom: 1px solid $bordersColor;

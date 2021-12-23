@@ -1,6 +1,6 @@
 $bordersColor: #505050;
 
-.answers-list {
+.answersList {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -12,14 +12,14 @@ $bordersColor: #505050;
   border-radius: 8px;
   background-color: #303030;
 
-  @media(max-width: 1200px) {
+  @media (max-width: 1200px) {
     flex-basis: 100%;
     width: 100%;
     margin-right: 0;
     margin-bottom: 30px;
   }
 
-  &__item {
+  .item {
     display: flex;
     height: 100%;
     padding: 15px 20px;
@@ -36,18 +36,18 @@ $bordersColor: #505050;
     }
   }
 
-  &__indicator {
+  .indicator {
     width: 1rem;
     height: 1rem;
     margin-right: 15px;
     border-radius: 50%;
     background-color: $bordersColor;
 
-    &_wrong {
+    .wrong {
       background-color: red;
     }
 
-    &_correct {
+    .correct {
       background-color: green;
     }
   }
