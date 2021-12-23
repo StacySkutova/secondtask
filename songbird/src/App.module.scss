@@ -1,0 +1,17 @@
+.app {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.answersDetails {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 1200px) {
+  .answersDetails {
+    flex-wrap: wrap;
+  }
+}
