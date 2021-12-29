@@ -3,10 +3,7 @@ import { useSelector } from "react-redux";
 import cn from "classnames";
 
 import birdsData from "./../../reduxtoolkit/BirdsData";
-import {
-  levelSelector,
-  scoreSelector,
-} from "../../reduxtoolkit/Selectors" /*"../../redux/Selectors"*/;
+import { levelSelector, scoreSelector } from "./../../reduxtoolkit/Selectors";
 
 import styles from "./Header.module.scss";
 
@@ -22,7 +19,13 @@ const Header = () => {
         <div className={styles.logo}>
           Song<span>bird</span>
         </div>
-        <div className={styles.score}>Score: {score}</div>
+        <div className={styles.rightBlock}>
+          <div className={styles.score}>Score: {score}</div>
+          <div className={styles.buttonsField}>
+            <button className={styles.button}>Signin</button>
+            <button className={styles.button}>Signup</button>
+          </div>
+        </div>
       </div>
       <ul className={styles.categoryList}>
         {categoriesData.map((category, index) => (

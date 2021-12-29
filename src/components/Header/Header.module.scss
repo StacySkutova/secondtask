@@ -21,8 +21,31 @@ $green: #2e8b57;
     }
   }
 
-  .score {
-    font-size: 1.5rem;
+  .rightBlock {
+    display: flex;
+    flex-direction: column;
+
+    .score {
+      text-align: end;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    .buttonsField {
+      width: 100%;
+      text-align: end;
+    }
+
+    .button {
+      width: 100px;
+      height: 35px;
+      margin-left: 20px;
+      background-color: lighten(seagreen, 35%);
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
   }
 }
 

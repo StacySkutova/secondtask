@@ -41,3 +41,8 @@ export const resetColorIndicatorSelector = createSelector(
   songbirdSelector,
   ({ resetColorIndicator }) => resetColorIndicator
 );
+
+export const isFetchingSelector = createSelector(
+  songbirdSelector,
+  ({ isFetching }) => isFetching
+);
