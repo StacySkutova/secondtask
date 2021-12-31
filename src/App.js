@@ -4,16 +4,16 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Route, Routes } from "react-router-dom";
 
-import Header from "./components/Header/Header";
-import FullPageLoader from "./components/FullPageLoader/FullPageLoader";
-import Registration from "./components/Game/Game";
-import Signup from "./components/Signup/Signup";
-import Signin from "./components/Signin/Signin";
+import Header from "components/Header/Header";
+import FullPageLoader from "components/FullPageLoader/FullPageLoader";
+import Registration from "components/Game/Game";
+import Signup from "components/Signup/Signup";
+import Signin from "components/Signin/Signin";
 import {
   isFetchingSelector,
   pureBirdsDataSelector,
-} from "./../src/reduxtoolkit/Selectors";
-import { fetchAsyncBirdsData } from "./../src/reduxtoolkit/ToolkitSongbirdReducer";
+} from "reduxtoolkit/Selectors";
+import { fetchAsyncBirdsData } from "reduxtoolkit/ToolkitSongbirdReducer";
 
 import styles from "./App.module.scss";
 
