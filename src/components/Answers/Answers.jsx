@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import correctAudio from "../../assets/media/CorrectAnswerSound.mp3";
-import incorrectAudio from "../../assets/media/IncorrectAnswerSound.mp3";
+import correctAudio from "src/assets/media/CorrectAnswerSound.mp3";
+import incorrectAudio from "src/assets/media/IncorrectAnswerSound.mp3";
 import {
   correctAnswerSelector,
   levelScoreSelector,
   questionedBirdSelector,
   resetColorIndicatorSelector,
   scoreSelector,
-} from "../../reduxtoolkit/Selectors" /*"../../redux/Selectors"*/;
+} from "src/reduxtoolkit/Selectors";
 import {
   setCorrectAnswer,
   setLevelScore,
   setResetColorIndicator,
   setScore,
   setSelectedBird,
-} from "../../reduxtoolkit/ToolkitSongbirdReducer" /*"../../redux/Actions"*/;
+} from "src/reduxtoolkit/ToolkitSongbirdReducer";
 
 import styles from "./Answers.module.scss";
 
 const initialClasses = new Array(6);
 initialClasses.fill(styles.indicator);
 
-const Answers = ({ birdsList, audioPlayer }) => {
+const Answers = ({ birdsList, audioPlayerRef }) => {
   const score = useSelector(scoreSelector);
   const levelScore = useSelector(levelScoreSelector);
   const questionedBird = useSelector(questionedBirdSelector);
@@ -51,18 +51,20 @@ const Answers = ({ birdsList, audioPlayer }) => {
     dispatch(setSelectedBird(bird));
     if (!correctAnswer) {
       const key = bird.id - 1;
-      const tempArr = classesForIndicators.slice();
+      const defaultAnswerIndicator = classesForIndicators.slice();
 
       if (questionedBird.name === bird.name) {
         dispatch(setCorrectAnswer(true));
-        tempArr[key] = tempArr[key] && styles.correct; // как с модификаторами, чтобы не дублировать код
-        setClassesForIndicators(tempArr);
+        defaultAnswerIndicator[key] =
+          defaultAnswerIndicator[key] && styles.correct; // как с модификаторами, чтобы не дублировать код
+        setClassesForIndicators(defaultAnswerIndicator);
         dispatch(setScore(score + levelScore));
         playAudio(correctAudio);
-        audioPlayer.current.audio.current.pause();
+        audioPlayerRef.current.audio.current.pause();
       } else {
-        tempArr[key] = tempArr[key] && styles.wrong; // как с модификаторами, чтобы не дублировать код
-        setClassesForIndicators(tempArr);
+        defaultAnswerIndicator[key] =
+          defaultAnswerIndicator[key] && styles.wrong; // как с модификаторами, чтобы не дублировать код
+        setClassesForIndicators(defaultAnswerIndicator);
         dispatch(setLevelScore(levelScore - 1));
         playAudio(incorrectAudio);
       }
@@ -78,7 +80,7 @@ const Answers = ({ birdsList, audioPlayer }) => {
           key={bird.id}
         >
           <div className={classesForIndicators[bird.id - 1]}></div>
-          {bird.name}
+          <span>{bird.name}</span>
         </li>
       ))}
     </ul>

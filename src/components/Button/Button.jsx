@@ -5,16 +5,13 @@ import {
   correctAnswerSelector,
   levelSelector,
   pureBirdsDataSelector,
-} from /*"../../redux/Selectors"*/ "../../reduxtoolkit/Selectors";
+} from "src/reduxtoolkit/Selectors";
 import {
-  setCorrectAnswer,
+  resetDataAfterButtonClick,
   setLevel,
-  setLevelScore,
   setQuestionedBird,
-  setResetColorIndicator,
   setScore,
-  setSelectedBird,
-} from /*"../../redux/Actions"*/ "../../reduxtoolkit/ToolkitSongbirdReducer";
+} from "src/reduxtoolkit/ToolkitSongbirdReducer";
 
 import styles from "./Button.module.scss";
 
@@ -32,10 +29,7 @@ const Button = () => {
         Math.random() * Math.floor(pureBirdsData.length)
       );
       dispatch(setQuestionedBird(pureBirdsData[level + 1][randomIndex]));
-      dispatch(setCorrectAnswer(false));
-      dispatch(setSelectedBird(null));
-      dispatch(setLevelScore(pureBirdsData[level].length - 1));
-      dispatch(setResetColorIndicator(true));
+      dispatch(resetDataAfterButtonClick());
     }
   };
 
@@ -44,12 +38,9 @@ const Button = () => {
     const randomIndex = Math.floor(
       Math.random() * Math.floor(pureBirdsData.length)
     );
-    dispatch(setQuestionedBird(pureBirdsData[0][randomIndex]));
-    dispatch(setCorrectAnswer(false));
-    dispatch(setSelectedBird(null));
     dispatch(setScore(0));
-    dispatch(setLevelScore(pureBirdsData[level].length - 1));
-    dispatch(setResetColorIndicator(true));
+    dispatch(setQuestionedBird(pureBirdsData[0][randomIndex]));
+    dispatch(resetDataAfterButtonClick());
   };
 
   return (

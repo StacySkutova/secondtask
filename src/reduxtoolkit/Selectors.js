@@ -41,3 +41,8 @@ export const resetColorIndicatorSelector = createSelector(
   songbirdSelector,
   ({ resetColorIndicator }) => resetColorIndicator
 );
+
+export const isAsyncBirdsDataFetchingSelector = createSelector(
+  songbirdSelector,
+  ({ isAsyncBirdsDataFetching }) => isAsyncBirdsDataFetching
+);

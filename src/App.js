@@ -1,52 +1,69 @@
-import React, { createRef } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import "react-toastify/dist/ReactToastify.css";
+import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
-import Header from "./components/Header/Header";
-import Question from "./components/Question/Question";
-import Answers from "./components/Answers/Answers";
-import Description from "./components/Description/Description";
-import Button from "./components/Button/Button";
-import Results from "./components/Results/Results";
+import Header from "src/components/Header/Header";
+import FullPageLoader from "src/components/FullPageLoader/FullPageLoader";
+import Game from "src/components/Game/Game";
+import Signup from "src/components/Signup/Signup";
+import Signin from "src/components/Signin/Signin";
+import Profile from "src/components/Profile/Profile";
 import {
-  levelSelector,
+  isAsyncBirdsDataFetchingSelector,
   pureBirdsDataSelector,
-} from "./reduxtoolkit/Selectors" /*"./redux/Selectors"*/;
+} from "src/reduxtoolkit/Selectors";
+import { fetchAsyncBirdsData } from "src/reduxtoolkit/ToolkitSongbirdReducer";
 
-import styles from "./App.module.scss";
+import styles from "src/App.module.scss";
 
 const App = () => {
   const pureBirdsData = useSelector(pureBirdsDataSelector);
-  const level = useSelector(levelSelector);
+  const isAsyncBirdsDataFetching = useSelector(
+    isAsyncBirdsDataFetchingSelector
+  );
 
-  const audioPlayer = createRef();
-  const detailsAudioPlayer = createRef();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAsyncBirdsData());
+  }, []);
+
+  if (isAsyncBirdsDataFetching) {
+    return (
+      <div>
+        <FullPageLoader />
+      </div>
+    );
+  }
 
   return (
-    <div className={styles.app}>
-      <Header />
-      <div>
-        {level > pureBirdsData.length - 1 ? (
-          <Results />
-        ) : (
-          <>
-            <Question
-              audioPlayer={audioPlayer}
-              detailsAudioPlayer={detailsAudioPlayer}
-            />
-            <div className={styles.answersDetails}>
-              <Answers
-                birdsList={pureBirdsData[level]}
-                audioPlayer={audioPlayer}
-              />
-              <Description
-                audioPlayer={audioPlayer}
-                detailsAudioPlayer={detailsAudioPlayer}
-              />
-            </div>
-          </>
-        )}
-        <Button />
-      </div>
+    <div>
+      {!pureBirdsData.length ? (
+        <div>
+          <ToastContainer autoClose={10000} />
+          <div className={styles.notificationWindow}>
+            <div className={styles.text}>Data is not available</div>
+            <button
+              onClick={() => dispatch(fetchAsyncBirdsData())}
+              className={styles.button}
+            >
+              Reload
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className={styles.app}>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Game />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/signin" element={<Signin />} />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
+        </div>
+      )}
     </div>
   );
 };

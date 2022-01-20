@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import {
   pureBirdsDataSelector,
   scoreSelector,
-} from "../../reduxtoolkit/Selectors" /*"../../redux/Selectors"*/;
+} from "src/reduxtoolkit/Selectors";
 
 import styles from "./Results.module.scss";
 

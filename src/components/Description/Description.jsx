@@ -3,11 +3,11 @@ import { useSelector } from "react-redux";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/src/styles.scss";
 
-import { selectedBirdSelector } from "../../reduxtoolkit/Selectors" /*"../../redux/Selectors"*/;
+import { selectedBirdSelector } from "src/reduxtoolkit/Selectors";
 
 import styles from "./Description.module.scss";
 
-const Description = ({ audioPlayer, detailsAudioPlayer }) => {
+const Description = ({ audioPlayerRef, detailsAudioPlayerRef }) => {
   const selectedBird = useSelector(selectedBirdSelector);
 
   if (selectedBird == null) {
@@ -36,9 +36,9 @@ const Description = ({ audioPlayer, detailsAudioPlayer }) => {
             width="100%"
             height="40px"
             src={selectedBird.audio}
-            ref={detailsAudioPlayer}
+            ref={detailsAudioPlayerRef}
             autoPlayAfterSrcChange={false}
-            onPlay={() => audioPlayer.current.audio.current.pause()}
+            onPlay={() => audioPlayerRef.current.audio.current.pause()}
           />
         </div>
       </div>

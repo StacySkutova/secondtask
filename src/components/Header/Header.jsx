@@ -1,12 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import cn from "classnames";
+import { NavLink } from "react-router-dom";
 
-import birdsData from "./../../reduxtoolkit/BirdsData";
-import {
-  levelSelector,
-  scoreSelector,
-} from "../../reduxtoolkit/Selectors" /*"../../redux/Selectors"*/;
+import birdsData from "src/reduxtoolkit/BirdsData";
+import { levelSelector, scoreSelector } from "src/reduxtoolkit/Selectors";
 
 import styles from "./Header.module.scss";
 
@@ -22,14 +20,26 @@ const Header = () => {
         <div className={styles.logo}>
           Song<span>bird</span>
         </div>
-        <div className={styles.score}>Score: {score}</div>
+        <div className={styles.rightBlock}>
+          <div className={styles.score}>Score: {score}</div>
+          <div className={styles.buttonsField}>
+            <NavLink to="/" className={styles.button}>
+              Back
+            </NavLink>
+            <NavLink to="/signin" className={styles.button}>
+              Signin
+            </NavLink>
+            <NavLink to="/signup" className={styles.button}>
+              Signup
+            </NavLink>
+          </div>
+        </div>
       </div>
       <ul className={styles.categoryList}>
         {categoriesData.map((category, index) => (
           <li
             key={category}
             className={cn([styles.item, { [styles.active]: index === level }])}
-            /*{index === level ? styles.active : styles.item}*/
           >
             {category}
           </li>
